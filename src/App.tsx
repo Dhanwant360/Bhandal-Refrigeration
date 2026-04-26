@@ -4,7 +4,7 @@ import Services from './components/Services';
 import GlobalTrade from './components/GlobalTrade';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import VirtualAssistant from './components/VirtualAssistant';
+import FloatingContacts from './components/FloatingContacts';
 
 export default function App() {
   return (
@@ -17,7 +17,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
-      <VirtualAssistant />
+      <FloatingContacts />
     </div>
   );
 }

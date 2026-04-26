@@ -1,6 +1,9 @@
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { useState } from 'react';
+import { Phone, Menu, X } from 'lucide-react';
 
 export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <header className="bg-white border-b border-slate-200 sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,13 +33,30 @@ export default function Header() {
             </button>
           </div>
 
-          <div className="md:hidden">
-            <button className="bg-blue-700 text-white p-2 rounded-lg">
-              <Phone size={20} />
+          <div className="md:hidden flex items-center gap-2">
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="bg-slate-100 text-slate-800 p-2 rounded-lg hover:bg-slate-200 transition-colors">
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
       </div>
+
+      {/* Mobile Navigation Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-slate-100 absolute w-full left-0 shadow-lg">
+          <nav className="flex flex-col px-4 py-4 space-y-4">
+            <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="block text-base font-semibold text-slate-800 hover:text-blue-700">Services</a>
+            <a href="#trade" onClick={() => setIsMobileMenuOpen(false)} className="block text-base font-semibold text-slate-800 hover:text-blue-700">Global Trade</a>
+            <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="block text-base font-semibold text-slate-800 hover:text-blue-700">Contact Us</a>
+            <div className="pt-4 border-t border-slate-100 flex flex-col gap-4">
+              <div className="flex items-center gap-2 text-slate-700">
+                <Phone size={18} className="text-blue-700" />
+                <span className="font-bold">+91 99158-17212</span>
+              </div>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
